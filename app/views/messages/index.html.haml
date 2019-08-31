@@ -22,7 +22,7 @@
         %form.new_message
           .form__message
             %input.form__mask{:placeholder => "type a message"}/
-            %label.form__image
-              %i.fa.fa-image
-              %input.hidden/
+            %label.form__image{:for => "message_image"}
+              %i.fa.fa-picture-o
+              %input#message_image.hidden{:name => "message[image]", :type => "file"}/
             %input.submit__btn{:input => "", :name => "commit", :type => "submit", :value => "Send"}/
