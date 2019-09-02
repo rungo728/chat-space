@@ -9,10 +9,10 @@ class UsersController < ApplicationController
     else
       render :edit
     end 
-    
-    private
+  end  
+  private
 
-    def user_params
+  def user_params
       params.require(:user).permit(:name, :email)
-    end
   end
+end
