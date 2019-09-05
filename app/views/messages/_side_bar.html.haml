@@ -11,5 +11,10 @@
           = fa_icon 'cog',  class:  'icon'
   .groups
     .group
-      %p.group__name taeko
-      %p.group__message こんにちは
+      - current_user.group.each do |group|
+        = link_to "#" do
+          %p.group__name 
+            = group.name
+          %p.group__message 
+            メッセージはまだありません。
+
