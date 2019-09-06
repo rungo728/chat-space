@@ -10,7 +10,9 @@
             "Members":"
             %li.user Rungo
         .right-header
-          .right-header__button Edit
+          .right-header__button 
+            = link_to edit_group_path(@group) do
+              Edit
       .messages
         .message
           .upper-message
