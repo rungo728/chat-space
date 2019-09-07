@@ -16,3 +16,4 @@
 # Ignore Byebug command history file.
 .byebug_history
 user-materials/
+public/uploads/*
