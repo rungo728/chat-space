@@ -14,17 +14,12 @@
             = link_to edit_group_path(@group) do
               Edit
       .messages
-        .message
-          .upper-message
-            %p.upper-message__username Rungo
-            %p.upper-message__date 2019/08/25(sun) 15:49:18
-          .lower-message
-            %p.lower-message__content こんにちは
+        = render partial: 'message', collection: @messages
       .form
-        %form.new_message
+        = form_for [@group, @message] do |f|
           .form__message
-            %input.form__mask{:placeholder => "type a message"}/
-            %label.form__image{:for => "message_image"}
-              %i.fa.fa-picture-o
-              %input#message_image.hidden{:name => "message[image]", :type => "file"}/
-            %input.submit__btn{:input => "", :name => "commit", :type => "submit", :value => "Send"}/
+            = f.text_field :content, class: "form__mask", placeholder: "type a message"
+            = f.label :image, class: "form__image" do
+              = fa_icon 'picture-o', class: "icon"
+              = f.file_field :image, class: "hidden"
+            = f.submit "Send", class: "submit__btn"
