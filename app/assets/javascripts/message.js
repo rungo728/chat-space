@@ -24,10 +24,10 @@ $(function(){
       `<div class="message">
         <div class="upper-message">
           <p class="upper-message__username">
-            ${message.user.name}
+            ${message.user_name}
           </p>
           <p class="upper-message__date">
-            ${message.created_at.strftime("%Y/%m/%d %H:%M")}
+            ${message.date}
           </p>
          </div>
         <div class="lower-message">
@@ -53,9 +53,11 @@ $(function(){
     })  
     .done(function(data){
       var html =  buildHTML(data);
-      $('messages').append(html);
-      $('messages').animate({scrollTop: $('messages')[0].scrollHeight}, 'fast');
+      $('.messages').append(html);
+      $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');
+      $('#message.content').val('')
       $('form')[0].reset();
+      $('.form__message').prop('disabled',false)
     })
   })
 }); 
