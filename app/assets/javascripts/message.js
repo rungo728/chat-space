@@ -1,43 +1,25 @@
 $(function(){
   function buildHTML(message) {
-    if ( message.image ) {
-      var html = 
-       `<div class="message">
-         <div class="upper-message">
-           <p class="upper-message__username">
-             ${message.user.name}
-           </p>
-           <p class="upper-message__date">
-             ${message.created_at.strftime("%Y/%m/%d %H:%M")}
-           </p>
-          </div>
-          <div class="lower-message">
-            <p class="lower-message__content">
-             ${message.content}
-            </p>
-             <img src=${message.image}>
-           </div>
-         </div>`
-      return html;
-    } else {
-      var html =
+    var content = message.content ? `${ message.content }` : "";
+    var image = message.image ? `<img src= ${ message.image }>` : "";
+    var html = 
       `<div class="message">
         <div class="upper-message">
           <p class="upper-message__username">
-            ${message.user_name}
+            ${message.user.name}
           </p>
           <p class="upper-message__date">
-            ${message.date}
+            ${message.created_at.strftime("%Y/%m/%d %H:%M")}
           </p>
-         </div>
+        </div>
         <div class="lower-message">
-           <p class="lower-message__content">
-              ${message.content}
-           </p>
-         </div>
+          <p class="lower-message__content">
+            ${message.content}
+          </p>
+            <img src=${message.image}>
+          </div>
        </div>`
-      return html; 
-    };
+      return html;
   } 
   $('#new_message').on('submit', function(e){
     e.preventDefault();
