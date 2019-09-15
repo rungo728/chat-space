@@ -56,6 +56,8 @@ $(function(){
       $('.messages').append(html);
       $('.messages').animate({ scrollTop: $('.messages')[0].scrollHeight },"fasts");
       $('.submit__btn').prop('disabled',false);
+    }).fail(function(data){
+      window.alert('メッセージを入力してください')
     })
   })
 }); 
