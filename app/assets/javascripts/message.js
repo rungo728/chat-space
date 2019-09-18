@@ -9,7 +9,7 @@ $(function(){
             ${message.user_name}
           </p>
           <p class="upper-message__date">
-            ${message.date}
+            ${message.created_at}
           </p>
         </div>
         <div class="lower-message">
@@ -21,6 +21,7 @@ $(function(){
        </div>`
       return html;
   } 
+  // メッセージ送信の非同期化
   $('#new_message').on('submit', function(e){
     e.preventDefault();
     var formData = new FormData(this);
@@ -43,4 +44,21 @@ $(function(){
       window.alert('メッセージを入力してください')
     })
   })
+  // 自動更新
+    var reloadMessages = function() {
+      var last_message_id = $(".message").last().data('message-id');
+      $.ajax({
+        url: "api/messages",
+        type: 'get',
+        dataType: 'json',
+        data: {id: last_message_id}
+      })
+      .done(function(messages) {
+        console.log('success');
+      })
+      .fail(function() {
+        console.log('error');
+      })
+    };
+  
 }); 
