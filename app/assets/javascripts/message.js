@@ -3,13 +3,13 @@ $(function(){
     var content = message.content ? `${ message.content }` : "";
     var image = message.image ? `<img src= ${ message.image }>` : "";
     var html = 
-      `<div class="message">
+      `<div class="message" data-message-id="${message.id}">
         <div class="upper-message">
           <p class="upper-message__username">
             ${message.user_name}
           </p>
           <p class="upper-message__date">
-            ${message.date}
+            ${message.created_at}
           </p>
         </div>
         <div class="lower-message">
@@ -21,6 +21,7 @@ $(function(){
        </div>`
       return html;
   } 
+  // メッセージ送信の非同期化
   $('#new_message').on('submit', function(e){
     e.preventDefault();
     var formData = new FormData(this);
@@ -43,4 +44,31 @@ $(function(){
       window.alert('メッセージを入力してください')
     })
   })
+  // 自動更新
+    var reloadMessages = function() {
+      if (window.location.href.match(/\/groups\/\d+\/messages/)){
+        var last_message_id = $(".message").last().data('message-id');
+        $.ajax({
+          url: "api/messages",
+          type: 'get',
+          dataType: 'json',
+          data: {id: last_message_id}
+        })
+        .done(function(messages) {
+          var insertHTML = '';
+          messages.forEach(function (message) {
+          insertHTML = buildHTML(message)
+          $('.messages').append(insertHTML);
+          $('.messages').animate({ scrollTop: $('.messages')[0].scrollHeight },"fasts")
+          })
+        })
+        .fail(function() {
+          alert('自動更新に失敗しました');
+        })
+      }
+      else {
+        clearInterval(reloadMessages);
+      }
+    }
+  setInterval(reloadMessages, 5000);
 }); 
