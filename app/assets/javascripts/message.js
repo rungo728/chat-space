@@ -57,9 +57,9 @@ $(function(){
         .done(function(messages) {
           var insertHTML = '';
           messages.forEach(function (message) {
-            insertHTML = buildHTML(message)
-            $('.messages').append(insertHTML);
-            $('.messages').animate({ scrollTop: $('.messages')[0].scrollHeight })
+          insertHTML = buildHTML(message)
+          $('.messages').append(insertHTML);
+          $('.messages').animate({ scrollTop: $('.messages')[0].scrollHeight },"fasts")
           })
         })
         .fail(function() {
@@ -69,6 +69,6 @@ $(function(){
       else {
         clearInterval(reloadMessages);
       }
-     }
-    setInterval(reloadMessages, 10000);
+    }
+  setInterval(reloadMessages, 5000);
 }); 
