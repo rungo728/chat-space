@@ -17,3 +17,4 @@
 .byebug_history
 user-materials/
 public/uploads/*
+config/secrets.yml
