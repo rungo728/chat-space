@@ -1,10 +1,14 @@
+a{text-decoration: none;
+}
 .side-bar {
+  a{color:white;}
   float: left;
   height: 100%;
   width: 300px;
   color: white;
   margin: 0;
   padding: 0;
+  
   .side-header {
     background-color: #253141;
     display: flex;
@@ -30,24 +34,24 @@
       }
     }
   }
-}
 
-.groups {
-  height: calc(100vh - 100px);
-  width: 260px;
-  background-color: #2f3e51;
-  padding: 20px 20px 0;
-  overflow:scroll;
-  float: left;
-  .group {
-    margin-bottom: 40px;
-    &__name {
-      font-size: 15px;
-      margin-bottom: 15px;
-    }
-    &__message {
-      font-size: 11px;
+
+  .groups {
+    height: calc(100vh - 100px);
+    width: 260px;
+    background-color: #2f3e51;
+    padding: 20px 20px 0;
+    overflow:scroll;
+    float: left;
+    .group {
+      margin-bottom: 40px;
+      &__name {
+        font-size: 15px;
+        margin-bottom: 15px;
+      }
+      &__message {
+        font-size: 11px;
+      }
     }
   }
 }
-

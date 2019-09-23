@@ -30,7 +30,7 @@ $(document).on("turbolinks:load", function() {
 
 
 
-  $("#user-search-field").on("keyup", function() {
+  $("#user-search-field").on("keyup", function() { 
     var input = $("#user-search-field").val();
     $.ajax({
       type: 'GET',
@@ -41,11 +41,11 @@ $(document).on("turbolinks:load", function() {
 
     .done(function(user) {
       $("#user-search-result").empty();
-      if (user.length !== 0) {
+      if (user.length !== 0 && input.length !== 0) {
         user.forEach(function(user){
           appendUser(user);
         });
-      }
+      }  
       else {
         appendNoUser("一致するユーザーはありません");
       } 
